@@ -28,109 +28,111 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Container(
-            color: Colors.black26,
-            child: Padding(
-              padding: const EdgeInsets.all(20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  TextButton(
-                    child: const Text(
-                      'KAUAN TORRISI',
-                      style: TextStyle(
-                        fontSize: 24,
-                        decoration: TextDecoration.underline,
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Container(
+              color: Colors.black26,
+              child: Padding(
+                padding: const EdgeInsets.all(20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    TextButton(
+                      child: const Text(
+                        'KAUAN TORRISI',
+                        style: TextStyle(
+                          fontSize: 24,
+                          decoration: TextDecoration.underline,
+                        ),
                       ),
+                      onPressed: () {},
                     ),
-                    onPressed: () {},
+                    TextButton(
+                      child: const Text(
+                        'Sobre',
+                        style: TextStyle(
+                          fontSize: 24,
+                        ),
+                      ),
+                      onPressed: () {
+                        Navigator.of(context).pushReplacement(MaterialPageRoute(
+                            builder: (_) => const AboutView()));
+                      },
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 130),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  width: 230,
+                  height: 230,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(230),
                   ),
-                  TextButton(
-                    child: const Text(
-                      'Sobre',
-                      style: TextStyle(
-                        fontSize: 24,
-                      ),
+                  child: Image.asset('lib/assets/images/Eu.jpeg'),
+                ),
+              ],
+            ),
+            const SizedBox(height: 40),
+            const Text(
+              'Kauan Torrisi Souza',
+              style: TextStyle(
+                fontSize: 30,
+              ),
+            ),
+            const SizedBox(height: 10),
+            const Text(
+              'Mobile Developer',
+              style: TextStyle(
+                fontSize: 22,
+              ),
+            ),
+            const SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                  icon: const FaIcon(
+                    FontAwesomeIcons.github,
+                    size: 30,
+                  ),
+                  onPressed: () => _githubURL(),
+                ),
+                const SizedBox(width: 20),
+                IconButton(
+                  icon: const FaIcon(
+                    FontAwesomeIcons.linkedin,
+                    size: 30,
+                  ),
+                  onPressed: () => _linkedinURL(),
+                ),
+              ],
+            ),
+            const SizedBox(height: 105),
+            Container(
+              width: double.infinity,
+              height: 50,
+              color: Colors.black26,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  Text(
+                    '© 2022 Kauan Torrisi Souza',
+                    style: TextStyle(
+                      fontSize: 20,
                     ),
-                    onPressed: () {
-                      Navigator.of(context).pushReplacement(
-                          MaterialPageRoute(builder: (_) => const AboutView()));
-                    },
                   ),
                 ],
               ),
             ),
-          ),
-          const SizedBox(height: 130),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                width: 230,
-                height: 230,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(230),
-                ),
-                child: Image.asset('lib/assets/images/Eu.jpeg'),
-              ),
-            ],
-          ),
-          const SizedBox(height: 40),
-          const Text(
-            'Kauan Torrisi Souza',
-            style: TextStyle(
-              fontSize: 30,
-            ),
-          ),
-          const SizedBox(height: 10),
-          const Text(
-            'Mobile Developer',
-            style: TextStyle(
-              fontSize: 22,
-            ),
-          ),
-          const SizedBox(height: 10),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              IconButton(
-                icon: const FaIcon(
-                  FontAwesomeIcons.github,
-                  size: 30,
-                ),
-                onPressed: () => _githubURL(),
-              ),
-              const SizedBox(width: 20),
-              IconButton(
-                icon: const FaIcon(
-                  FontAwesomeIcons.linkedin,
-                  size: 30,
-                ),
-                onPressed: () => _linkedinURL(),
-              ),
-            ],
-          ),
-          const SizedBox(height: 105),
-          Container(
-            width: double.infinity,
-            height: 50,
-            color: Colors.black26,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                Text(
-                  '© 2022 Kauan Torrisi Souza',
-                  style: TextStyle(
-                    fontSize: 20,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
