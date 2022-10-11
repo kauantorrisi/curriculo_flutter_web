@@ -3,9 +3,14 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:kauan_curriculo_web_2022/views/about.view.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class HomeView extends StatelessWidget {
+class HomeView extends StatefulWidget {
   const HomeView({super.key});
 
+  @override
+  State<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
   Future<void> _githubURL() async {
     final Uri url = Uri.parse('https://github.com/kauantorrisi');
     if (await canLaunchUrl(url)) {
@@ -25,6 +30,8 @@ class HomeView extends StatelessWidget {
     }
   }
 
+  List _isHovering = [false, false];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,27 +46,36 @@ class HomeView extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    TextButton(
-                      child: const Text(
+                    InkWell(
+                      onTap: () {},
+                      onHover: (value) {
+                        setState(() {
+                          _isHovering[0] = value;
+                        });
+                      },
+                      child: Text(
                         'KAUAN TORRISI',
                         style: TextStyle(
                           fontSize: 24,
-                          decoration: TextDecoration.underline,
+                          color: _isHovering[0] ? Colors.yellow : Colors.white,
                         ),
                       ),
-                      onPressed: () {},
                     ),
-                    TextButton(
-                      child: const Text(
+                    InkWell(
+                      onTap: () => Navigator.of(context)
+                          .push(MaterialPageRoute(builder: (_) => AboutView())),
+                      onHover: (value) {
+                        setState(() {
+                          _isHovering[1] = value;
+                        });
+                      },
+                      child: Text(
                         'Sobre',
                         style: TextStyle(
                           fontSize: 24,
+                          color: _isHovering[1] ? Colors.yellow : Colors.white,
                         ),
                       ),
-                      onPressed: () {
-                        Navigator.of(context).pushReplacement(MaterialPageRoute(
-                            builder: (_) => const AboutView()));
-                      },
                     ),
                   ],
                 ),
@@ -84,6 +100,7 @@ class HomeView extends StatelessWidget {
               'Kauan Torrisi Souza',
               style: TextStyle(
                 fontSize: 30,
+                color: Colors.yellow,
               ),
             ),
             const SizedBox(height: 10),
@@ -91,6 +108,7 @@ class HomeView extends StatelessWidget {
               'Mobile Developer',
               style: TextStyle(
                 fontSize: 22,
+                color: Colors.yellow,
               ),
             ),
             const SizedBox(height: 10),
@@ -116,8 +134,6 @@ class HomeView extends StatelessWidget {
             ),
             const SizedBox(height: 105),
             Container(
-              width: double.infinity,
-              height: 50,
               color: Colors.black26,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
